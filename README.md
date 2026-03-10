@@ -138,7 +138,7 @@ All features merged using: git flow feature finish -k
 
 ## 👨‍💻 Author
 
-Aaditya Ranjan
+Barnam Das
 
 ------------------------------------------------------------------------
 
