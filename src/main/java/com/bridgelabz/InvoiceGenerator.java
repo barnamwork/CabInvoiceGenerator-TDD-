@@ -2,20 +2,25 @@ package com.bridgelabz;
 
 public class InvoiceGenerator {
 
-    private static final double COST_PER_KM = 10.0;
-    private static final double COST_PER_MINUTE = 1.0;
-    private static final double MINIMUM_FARE = 5.0;
-
+    // UC1 compatibility (Normal ride default)
     public double calculateFare(double distance, int time) {
-        double fare = distance * COST_PER_KM + time * COST_PER_MINUTE;
-        return Math.max(fare, MINIMUM_FARE);
+        Ride ride = new Ride(distance, time);
+        return calculateFare(ride);
+    }
+
+    // Core method used for category-based calculation
+    public double calculateFare(Ride ride) {
+        double fare = ride.distance * ride.category.costPerKm +
+                ride.time * ride.category.costPerMinute;
+
+        return Math.max(fare, ride.category.minimumFare);
     }
 
     public double calculateFare(Ride[] rides) {
         double totalFare = 0;
 
         for (Ride ride : rides) {
-            totalFare += calculateFare(ride.distance, ride.time);
+            totalFare += calculateFare(ride);
         }
 
         return totalFare;

@@ -47,4 +47,18 @@ class InvoiceGeneratorTest {
         assertEquals(30.0, summary.getTotalFare());
         assertEquals(15.0, summary.getAverageFare());
     }
+
+    @Test
+    void givenPremiumRide_ShouldReturnPremiumFare() {
+        InvoiceGenerator invoiceGenerator = new InvoiceGenerator();
+
+        Ride[] rides = {
+                new Ride(2.0, 5, RideCategory.PREMIUM)
+        };
+
+        InvoiceSummary summary = invoiceGenerator.calculateFareSummary(rides);
+
+        assertEquals(1, summary.getNumberOfRides());
+        assertEquals(40.0, summary.getTotalFare());
+    }
 }
