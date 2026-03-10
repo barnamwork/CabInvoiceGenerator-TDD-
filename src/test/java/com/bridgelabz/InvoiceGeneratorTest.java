@@ -1,4 +1,4 @@
-package com.cabinvoicegenerator;
+package com.bridgelabz;
 
 import org.junit.jupiter.api.Test;
 import static org.junit.jupiter.api.Assertions.*;
@@ -17,5 +17,18 @@ class InvoiceGeneratorTest {
         InvoiceGenerator invoiceGenerator = new InvoiceGenerator();
         double fare = invoiceGenerator.calculateFare(0.1, 1);
         assertEquals(5.0, fare);
+    }
+
+    @Test
+    void givenMultipleRides_ShouldReturnAggregateFare() {
+        InvoiceGenerator invoiceGenerator = new InvoiceGenerator();
+
+        Ride[] rides = {
+                new Ride(2.0, 5),
+                new Ride(0.1, 1)
+        };
+
+        double totalFare = invoiceGenerator.calculateFare(rides);
+        assertEquals(30.0, totalFare);
     }
 }
